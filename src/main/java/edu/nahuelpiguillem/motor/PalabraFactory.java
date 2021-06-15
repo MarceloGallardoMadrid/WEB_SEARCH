@@ -9,6 +9,8 @@ import edu.nahuelpiguillem.dbentities.terminoxdocumento;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
+import static java.lang.Math.toIntExact;
+
 /**
  *
  * @author pigui
@@ -62,7 +64,10 @@ public class PalabraFactory {
        Palabra p= new Palabra();
        for(terminoxdocumento txd : list){
            int tf=txd.getTf();
-           int idD=(int) txd.getIdD();
+           long LidD= txd.getIdD();
+           int idD = toIntExact(LidD);
+           System.out.println("LidD " + LidD + " -> idD " + idD);
+
            p.agregarDocumento(idD,tf);
        }
        return p;

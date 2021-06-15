@@ -29,7 +29,7 @@ public class DBDocumento {
         String cmd="INSERT INTO documento (nombre,words,iddoc) values('"+d.getNombre()+"',"+d.getWords()+","+d.getIddoc()+")";
         help.modificarRegistro(cmd);
     }
-    public Documento leerDocumentoJPA(int id){
+    public Documento leerDocumentoJPA(long id){
         EntityManager em=helpjpa.connect();
         Documento d =em.find(Documento.class,id);
         helpjpa.disconnect();
@@ -116,8 +116,12 @@ public class DBDocumento {
         List<String> nombres = new LinkedList<>();
         for(Object o:list){
             Map.Entry<Integer,Float> e=(Map.Entry<Integer,Float>)o;
-            Documento d = leerDocumentoJPA(e.getKey());
-            nombres.add(d.nombre+" = "+e.getValue());       
+            Documento d =  leerDocumentoJPA((long) e.getKey());
+            if (d!=null) {
+                nombres.add(d.nombre+" = "+e.getValue() + ": "  + e.getKey());       
+            } else {
+                nombres.add("error: " + e.getKey());       
+}
         }
         return nombres;
     }

@@ -80,12 +80,12 @@ public class LectorDocumentos {
                 if(f.getName().endsWith(".txt"))
                 {
                     if(f.isFile()&&!f.isHidden()){
-                        try{
-                            copiarArchivo(f);
-                        }
-                        catch(IOException fex){
-                            System.out.println(fex.getMessage());
-                        }
+                        //try{
+                        //    copiarArchivo(f);
+                        //}
+                        //catch(IOException fex){
+                        //    System.out.println(fex.getMessage());
+                        //}
                         rutas.addFirst(f.toString());
                     }
                 }
@@ -108,15 +108,11 @@ public class LectorDocumentos {
                     listDoc=new LinkedList<>();
                     System.out.println("Se procesaron "+totalDocs+" documentos");
                 }
-                if(totalDocs==100){
-                    System.out.println("Se procesaron 100 documetnos");
-                    break;
-                }
             }
             gv.guardarLoteDocumentosJPABatch(listDoc);
             long t2 = System.currentTimeMillis();
             long tt=t2-t1;
-            System.out.println("Se tardo "+tt+" milisegundos en procesar 100 docs");
+            System.out.println("Se tardo "+tt+" milisegundos en procesar 500 docs");
         }
         catch(FileNotFoundException sqex){
             System.out.println(sqex.getMessage());
@@ -151,10 +147,6 @@ public class LectorDocumentos {
                     
                     listDoc=new LinkedList<>();
                     System.out.println("Se procesaron "+totalDocs+" documentos");
-                }
-                if(totalDocs==100){
-                    System.out.println("Se procesaron 100 documetnos");
-                    break;
                 }
             }
             gv.guardarLoteDocumentosJPABatch(listDoc);

@@ -1,5 +1,0 @@
-Packaging webapp
-Assembling webapp [WEB_SEARCH] in [C:\Users\pigui\Desktop\Nahuel Piguillem\Facu\DLC\Practico\TP\shared\WEB_SEARCH\target\WEB_SEARCH-1.0-SNAPSHOT]
-Processing war project
-Copying webapp resources [C:\Users\pigui\Desktop\Nahuel Piguillem\Facu\DLC\Practico\TP\shared\WEB_SEARCH\src\main\webapp]
-Webapp assembled in [1240 msecs]

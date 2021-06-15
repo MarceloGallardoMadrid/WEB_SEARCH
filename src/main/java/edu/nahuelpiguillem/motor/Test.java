@@ -31,7 +31,7 @@ public class Test {
         //Controlador
 //    Controlador controlador = new Controlador();
 //        System.out.println(Arrays.toString(controlador.getDocumentosEnCarpeta("DocumentosTP1")));
-
+        //limpiarBD();
         addDoc();
         //buscarPalabras(new String[] {"armas"});
         //guardarBD();
