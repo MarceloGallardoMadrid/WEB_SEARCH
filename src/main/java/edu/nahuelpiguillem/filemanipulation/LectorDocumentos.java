@@ -13,6 +13,11 @@ import java.util.Scanner;
 import java.util.stream.Stream;
 import java.util.LinkedList;
 import edu.nahuelpiguillem.dbentities.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 /**
  *
@@ -50,6 +55,11 @@ public class LectorDocumentos {
         }
         System.out.println(doc.longToString());
     }
+    private void copiarArchivo(File f) throws IOException{
+        Path fuente = Paths.get("./add/"+f.getName());
+        Path destino=Paths.get("./docs/"+f.getName());
+        Files.copy(fuente, destino, StandardCopyOption.REPLACE_EXISTING);
+    }
     public void guardarDocumentoAdd(){
         System.out.println("Add Document");
         LinkedList<String> rutas= new LinkedList<>();
@@ -64,20 +74,27 @@ public class LectorDocumentos {
             File d=new File("add");
             //File d = new File("../../Files");
             File[] files=d.listFiles();
-            System.out.println(files);
             for(int i=0;i<files.length;i++){
                 File f=files[i];
+                
                 if(f.getName().endsWith(".txt"))
                 {
                     if(f.isFile()&&!f.isHidden()){
+                        try{
+                            copiarArchivo(f);
+                        }
+                        catch(IOException fex){
+                            System.out.println(fex.getMessage());
+                        }
                         rutas.addFirst(f.toString());
                     }
                 }
             }
+            
 /*            Stream.of(d.listFiles((arch,nom)->nom.endsWith(".txt")))
                 .filter(p->p.isFile() && !p.isHidden())
                 .forEach(doc->rutas.addFirst(doc.toString()));
-*/            int docs=rutas.size();
+*/          int docs=rutas.size();
             System.out.println("Se deben procesar "+docs+" documentos");
             long t1=System.currentTimeMillis();
             for(String ruta : rutas){

@@ -49,8 +49,6 @@ public class BDHelperJPA {
     }
     public void flush(EntityTransaction et){
         commit(et);
-        em.flush();
-        em.clear();
         et.begin();
     }
     public void getTransaction(){
