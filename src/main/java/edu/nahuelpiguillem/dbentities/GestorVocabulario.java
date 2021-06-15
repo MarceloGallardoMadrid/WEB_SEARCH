@@ -20,8 +20,8 @@ public class GestorVocabulario {
     DBPalabra dbp;
     DBTerminoXDocumento dbtxd;
     Vocabulario v;
-    int iddocs;
-    int idwords;
+    long iddocs;
+    long idwords;
     long batchs;
     public GestorVocabulario(){
         dbd= new DBDocumento();
@@ -121,7 +121,7 @@ public class GestorVocabulario {
                System.out.println(ex.getMessage());
             }        
         }
-    private void actualizarVocabularioBatch(String w,Palabra p, BDHelper help,int iddoc){
+    private void actualizarVocabularioBatch(String w,Palabra p, BDHelper help,long iddoc){
         try{
           if(!v.contains(w)){
             v.add(w);

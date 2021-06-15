@@ -42,18 +42,18 @@ public class DBPalabra {
         EntityManager em = helpjpa.connect();
         return em.createQuery("select p from Palabra p").getResultList();
     }
-    public String addPalabraBatch(Palabra p,int iddoc){
+    public String addPalabraBatch(Palabra p,long iddoc){
         return "INSERT INTO termino (nombre,MaxTF,iddoc,cantDoc,idword) values('"+p.getNombre()+"',"+p.getMaxtf()+","+iddoc+",0,"+p.getIdword()+")";
     }
     public void addDoc(Palabra p)throws SQLException{
         String cmd="UPDATE termino SET cantDoc=cantDoc+1 WHERE idword="+p.getIdword();
         help.modificarRegistro(cmd);
     }
-    public void modificarMaxTf(Palabra p,int tf,int iddoc)throws SQLException{
+    public void modificarMaxTf(Palabra p,int tf,long iddoc)throws SQLException{
         String cmd= "UPDATE termino SET MaxTF="+tf+",iddoc="+iddoc+" WHERE idword="+p.getIdword();
         help.modificarRegistro(cmd);
     }
-    public String cmdmodificarMaxTf(Palabra p,int tf,int iddoc){
+    public String cmdmodificarMaxTf(Palabra p,int tf,long iddoc){
         return "UPDATE termino SET MaxTF="+tf+",iddoc="+iddoc+" WHERE idword="+p.getIdword();
     }
     public String addDocBatch(Palabra p){
@@ -104,11 +104,11 @@ public class DBPalabra {
     public int leerUltimoIdInsertado(){
         return help.leerUltimoIdTabla("termino","idword");
     }
-    public int leerUltimoInsertadoJPA(){
+    public long leerUltimoInsertadoJPA(){
         EntityManager em =helpjpa.connect();
-        Palabra p= (Palabra)em.createQuery("select p from Palabra p order by p.idword desc").getResultList().get(0);
+        long i= (long)em.createQuery("select count(p) from Palabra p ").getResultList().get(0);
         helpjpa.disconnect();
-        return p.getIdword();
+        return i;
     }
     private int matId(ResultSet rs) throws SQLException{
         int id=-1;

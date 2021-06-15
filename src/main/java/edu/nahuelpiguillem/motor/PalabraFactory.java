@@ -62,7 +62,7 @@ public class PalabraFactory {
        Palabra p= new Palabra();
        for(terminoxdocumento txd : list){
            int tf=txd.getTf();
-           int idD=txd.getIdD();
+           int idD=(int) txd.getIdD();
            p.agregarDocumento(idD,tf);
        }
        return p;

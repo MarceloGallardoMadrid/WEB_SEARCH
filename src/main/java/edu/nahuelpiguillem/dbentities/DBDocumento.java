@@ -8,6 +8,9 @@ package edu.nahuelpiguillem.dbentities;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 
@@ -25,6 +28,12 @@ public class DBDocumento {
     public void addDoc(Documento d)throws SQLException{
         String cmd="INSERT INTO documento (nombre,words,iddoc) values('"+d.getNombre()+"',"+d.getWords()+","+d.getIddoc()+")";
         help.modificarRegistro(cmd);
+    }
+    public Documento leerDocumentoJPA(int id){
+        EntityManager em=helpjpa.connect();
+        Documento d =em.find(Documento.class,id);
+        helpjpa.disconnect();
+        return d;
     }
     public void addDocJPA(Documento d){
         EntityManager em =helpjpa.connect();
@@ -72,11 +81,12 @@ public class DBDocumento {
     public int leerUltimoIdInsertado(){
         return help.leerUltimoIdTabla("documento", "iddoc");
     }
-    public int leerUltimoIdInsertadoJPA(){
+    public long leerUltimoIdInsertadoJPA(){
         EntityManager em =helpjpa.connect();
-        Documento d= (Documento)em.createQuery("select d from Documento d order by d.iddoc desc").getResultList().get(0);
+        long i= (long)em.createQuery("select count(d) from Documento d").getResultList().get(0);
+        System.out.println(i);
         helpjpa.disconnect();
-        return d.getIddoc();
+        return i;
     }
     public int lastId(){
        int id=-1;
@@ -100,5 +110,15 @@ public class DBDocumento {
             id=rs.getInt("id");       
         }
         return id;
+    }
+
+    public List<String> leerNombresJPA(List list) {
+        List<String> nombres = new LinkedList<>();
+        for(Object o:list){
+            Map.Entry<Integer,Float> e=(Map.Entry<Integer,Float>)o;
+            Documento d = leerDocumentoJPA(e.getKey());
+            nombres.add(d.nombre+" = "+e.getValue());       
+        }
+        return nombres;
     }
 }

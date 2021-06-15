@@ -12,7 +12,7 @@ import javax.persistence.Table;
 public class Palabra implements Serializable{
     @Id
     @Column(name="idword")
-    int idword;
+    long idword;
     String  nombre;
     @Column(name="MaxTf")
     int maxtf;
@@ -31,18 +31,18 @@ public class Palabra implements Serializable{
         cantdoc=0;
         maxtf=0;
     }
-    public Palabra(int id, String nombre) {
+    public Palabra(long id, String nombre) {
         this.idword = id;
         this.nombre = nombre;
         cantdoc=0;
         maxtf=0;
     }
-    public Palabra(int id,String nombre,int maxTf){
+    public Palabra(long id,String nombre,int maxTf){
         this.idword=id;
         this.nombre=nombre;
         this.maxtf=maxTf;
     }
-    public Palabra(int id, String nombre, int maxtf, int iddoc, int cantdoc) {
+    public Palabra(long id, String nombre, int maxtf, int iddoc, int cantdoc) {
         this.idword = id;
         this.nombre = nombre;
         this.maxtf = maxtf;
@@ -50,7 +50,7 @@ public class Palabra implements Serializable{
         this.cantdoc = cantdoc;
     }
 
-    public void setIdword(int id) {
+    public void setIdword(long id) {
         this.idword = id;
     }
 
@@ -72,7 +72,7 @@ public class Palabra implements Serializable{
     public void sumDoc(){
         cantdoc++;
     }
-    public int getIdword() {
+    public long getIdword() {
         return idword;
     }
 

@@ -12,7 +12,7 @@ import javax.persistence.Transient;
 public class Documento implements Serializable{
     @Id
     @Column(name="iddoc")
-    int iddoc;
+    long iddoc;
     String nombre;
     int words;
     @Transient
@@ -28,7 +28,7 @@ public class Documento implements Serializable{
         this.ruta=ruta;
     }
 
-    public Documento(int id, String nombre, int words, String ruta) {
+    public Documento(long id, String nombre, int words, String ruta) {
         
         this.iddoc = id;
         this.nombre = nombre;
@@ -38,7 +38,7 @@ public class Documento implements Serializable{
     public void addPalabra(String w){
         v.add(w);
     }
-    public void setIddoc(int id) {
+    public void setIddoc(long id) {
         this.iddoc = id;
     }
     public boolean contains(String w){
@@ -61,7 +61,7 @@ public class Documento implements Serializable{
         this.nombre = nombre;
     }
 
-    public int getIddoc() {
+    public long getIddoc() {
         return iddoc;
     }
 

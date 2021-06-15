@@ -80,7 +80,7 @@ public class bdaccesspoint {
         EntityManager em=helpjpa.connect();
         Palabra p=idPalabraJPA(word);
         if(p.getIdword()==-1){return new LinkedList<terminoxdocumento>();}
-        int id=p.getIdword();
+        long id=p.getIdword();
         Query q;
         q = em.createQuery("select txd from terminoxdocumento txd where txd.idT=:id order by txd.tf desc");
         q.setParameter("id",id);

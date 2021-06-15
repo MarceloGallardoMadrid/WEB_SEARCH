@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  *
@@ -19,38 +20,43 @@ import javax.persistence.Table;
 @Entity
 @Table(name="terminoxdocumento")
 public class terminoxdocumento implements Serializable {
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+/*    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO,generator="native")
+    @GenericGenerator(name="native",strategy="native")
     int idtxd;
-    int idT;
-    int idD;
+    
+*/  @Id 
+    long idT;
+  @Id
+    long idD;
+    
     int tf;
 
     public terminoxdocumento() {
     }
 
-    public terminoxdocumento(int idtxd, int idT, int idD, int tf) {
-        this.idtxd = idtxd;
+    public terminoxdocumento(int idtxd, long idT, long idD, int tf) {
+        //this.idtxd = idtxd;
         this.idT = idT;
         this.idD = idD;
         this.tf = tf;
     }
 
-    public terminoxdocumento(int idT, int idD, int tf) {
+    public terminoxdocumento(long idT, long idD, int tf) {
         this.idT = idT;
         this.idD = idD;
         this.tf = tf;
     }
 
-    public int getIdtxd() {
+/*    public int getIdtxd() {
         return idtxd;
     }
-
-    public int getIdT() {
+*/
+    public long getIdT() {
         return idT;
     }
 
-    public int getIdD() {
+    public long getIdD() {
         return idD;
     }
 
@@ -58,15 +64,15 @@ public class terminoxdocumento implements Serializable {
         return tf;
     }
 
-    public void setIdtxd(int idtxd) {
+/*    public void setIdtxd(int idtxd) {
         this.idtxd = idtxd;
     }
-
-    public void setIdT(int idT) {
+*/
+    public void setIdT(long idT) {
         this.idT = idT;
     }
 
-    public void setIdD(int idD) {
+    public void setIdD(long idD) {
         this.idD = idD;
     }
 

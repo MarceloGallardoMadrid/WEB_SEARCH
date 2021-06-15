@@ -30,6 +30,7 @@ public class DBTerminoXDocumento {
         EntityTransaction t= em.getTransaction();
         t.begin();
         em.persist(dxt);
+        
         t.commit();
         helpjpa.disconnect();
     }
