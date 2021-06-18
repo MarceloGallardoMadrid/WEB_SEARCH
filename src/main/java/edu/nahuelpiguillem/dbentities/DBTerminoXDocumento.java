@@ -35,7 +35,7 @@ public class DBTerminoXDocumento {
         helpjpa.disconnect();
     }
     public void addTermXDocJPABatch(Documento d,Palabra p, int tf,BDHelperJPA helpjpa){
-        terminoxdocumento dxt=new terminoxdocumento(d.getIddoc(),p.getIdword(),tf);
+        terminoxdocumento dxt=new terminoxdocumento(p.getIdword(), d.getIddoc(),tf);
         helpjpa.persist(dxt);
     }
     public List leerTodostxd(){
