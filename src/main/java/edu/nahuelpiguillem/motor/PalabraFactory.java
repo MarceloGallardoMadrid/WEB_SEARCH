@@ -27,39 +27,6 @@ public class PalabraFactory {
         return p;
     }
     
-    public Palabra fabricarPalabra(String word,int limit){
-        Palabra p= new Palabra();
-        ResultSet rs=access.leerTerminoXDoc(word,limit);
-        if(rs==null){return p;}
-        try{
-            p=materializarPalabra(rs);
-            access.cerrarConexion(rs);
-        }
-        catch(SQLException ex){
-            System.out.println(ex.getMessage());
-        }
-
-        return p;
-        
-    }
-   public Palabra fabricarPalabra(String word){
-        Palabra p= new Palabra();
-        
-        
-        try{
-            ResultSet rs=access.leerTerminoXDoc(word);
-            if(rs==null){return p;}
-            
-            p=materializarPalabra(rs);
-            access.cerrarConexion(rs);
-        }
-        catch(SQLException ex){
-            System.out.println(ex.getMessage());
-        }
-
-        return p;
-        
-    }
    private Palabra materializarPalabraJPA(List<terminoxdocumento> list){
        Palabra p= new Palabra();
        for(terminoxdocumento txd : list){

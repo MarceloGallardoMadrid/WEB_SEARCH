@@ -42,10 +42,15 @@ public class terminoxdocumento implements Serializable {
         this.tf = tf;
     }
 
-    public terminoxdocumento(long idT, long idD, int tf) {
+    public terminoxdocumento(long idD, long idT, int tf) {
         this.idT = idT;
         this.idD = idD;
         this.tf = tf;
+    }
+
+    @Override
+    public String toString() {
+        return "terminoxdocumento{" + "idT=" + idT + ", idD=" + idD + ", tf=" + tf + '}';
     }
 
 /*    public int getIdtxd() {
@@ -78,6 +83,35 @@ public class terminoxdocumento implements Serializable {
 
     public void setTf(int tf) {
         this.tf = tf;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 67 * hash + (int) (this.idT ^ (this.idT >>> 32));
+        hash = 67 * hash + (int) (this.idD ^ (this.idD >>> 32));
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final terminoxdocumento other = (terminoxdocumento) obj;
+        if (this.idT != other.idT) {
+            return false;
+        }
+        if (this.idD != other.idD) {
+            return false;
+        }
+        return true;
     }
     
     

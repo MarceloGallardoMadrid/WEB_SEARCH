@@ -32,8 +32,8 @@ public class Test {
 //    Controlador controlador = new Controlador();
 //        System.out.println(Arrays.toString(controlador.getDocumentosEnCarpeta("DocumentosTP1")));
         //limpiarBD();
-        addDoc();
-        //buscarPalabras(new String[] {"armas"});
+        //addDoc();
+        buscarPalabras(new String[] {"null"});
         //guardarBD();
     }
 
@@ -71,9 +71,5 @@ public class Test {
         ld.guardarDocumentosJPABatch();
 	System.out.println("Termine jeje");
     }
-    private static void limpiarBD(){
-        GestorVocabulario  gv = new GestorVocabulario();
-        gv.limpiarBdBatch();
-        System.out.println("Termine jeje");
-    }
+
 }

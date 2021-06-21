@@ -62,15 +62,8 @@ public class BusquedaControlador {
     @Path("guardar")
     public Response guardar(){
         LectorDocumentos ld = new LectorDocumentos();
-        ld.guardarDocumentoAdd();
-       Buscador b = new  Buscador(); 
-        List list = b.buscar(new String[] {"trajano"}, 5);
-        StringBuilder sb = new StringBuilder("<p>");
-        for(Object o:list){
-            sb.append("<br>").append(o);
-        }
-        sb.append("</p>");
-        return Response.ok(sb.toString()).build();
+        int ans=ld.guardarDocumentoAdd();
+        return Response.ok("Se guardaron "+ans+" documentos").build();
         
     }
     @GET

@@ -19,9 +19,5 @@ public class AccessPoint {
         Vocabulario v= vf.fabricarVocabularioJPA(palabras,limit);
         return v;
     }
-    public Vocabulario crearVocabulario(String palabras[]){
-        Vocabulario v= vf.fabricarVocabulario(palabras);
-        return v;
-    }
 
 }

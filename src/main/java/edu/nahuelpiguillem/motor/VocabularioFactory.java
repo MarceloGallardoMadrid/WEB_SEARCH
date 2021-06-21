@@ -24,24 +24,4 @@ public class VocabularioFactory {
         }
         return v;
     }
-    public Vocabulario fabricarVocabulario(String words[],int limit){
-        Vocabulario v= new Vocabulario();
-        if(words.length==0){return v;}
-        int len=words.length;
-        for(int i=0;i<len;i++){
-            Palabra p=pf.fabricarPalabra(words[i],limit);
-            v.vocabulario.put(words[i],p);
-        }
-        return v;
-    }
-    public Vocabulario fabricarVocabulario(String words[]){
-        Vocabulario v= new Vocabulario();
-        if(words.length==0){return v;}
-        int len=words.length;
-        for(int i=0;i<len;i++){
-            Palabra p=pf.fabricarPalabra(words[i]);
-            v.vocabulario.put(words[i],p);
-        }
-        return v;
-    }
 }
