@@ -3,10 +3,10 @@
   <persistence-unit name="BusquedaPU" transaction-type="RESOURCE_LOCAL">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3386/busqueda2"/>
-      <property name="javax.persistence.jdbc.user" value="root"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mariadb://localhost:3306/busqueda"/>
+      <property name="javax.persistence.jdbc.user" value="axel1"/>
       <property name="javax.persistence.jdbc.driver" value="org.mariadb.jdbc.Driver"/>
-      <property name="javax.persistence.jdbc.password" value="GerardoSofovich"/>
+      <property name="javax.persistence.jdbc.password" value="axel"/>
     </properties>
   </persistence-unit>
 </persistence>

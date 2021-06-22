@@ -2,4 +2,4 @@
 /target/
 add
 docs
-.idea
+src/main/resources/META-INF/persistence.xml

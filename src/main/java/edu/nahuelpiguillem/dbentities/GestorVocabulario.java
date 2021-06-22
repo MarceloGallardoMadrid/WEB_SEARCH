@@ -53,7 +53,6 @@ public class GestorVocabulario {
         helpjpa.disconnect();
     }
     public void guardarDocumentoJPABatch(Documento d,BDHelperJPA helpjpa){
-        iddocs++;
         d.setIddoc(iddocs);
         
         dbd.addDocJPABatch(d,helpjpa);
@@ -65,7 +64,8 @@ public class GestorVocabulario {
             Palabra p=e.getValue();
             actualizarVocabularioJPABatch(w,p,d,helpjpa);
             agregarTerminoXDocumento(d,w,p.getMaxtf(),helpjpa);
-        } 
+        }
+        iddocs++;
     }
     public void actualizarVocabularioJPABatch(String w,Palabra p, Documento d,BDHelperJPA helpjpa){
         if(!v.contains(w)){

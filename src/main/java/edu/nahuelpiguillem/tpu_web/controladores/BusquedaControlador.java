@@ -6,12 +6,14 @@
 package edu.nahuelpiguillem.tpu_web.controladores;
 
 import edu.nahuelpiguillem.buscador.Buscador;
+import edu.nahuelpiguillem.buscador.DocumentoRespuesta;
 import edu.nahuelpiguillem.buscador.Documentos;
 import edu.nahuelpiguillem.dbentities.DBDocumento;
 import edu.nahuelpiguillem.filemanipulation.LectorDocumentos;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.inject.Inject;
@@ -53,32 +55,41 @@ public class BusquedaControlador {
         List<String> nombres=dbd.leerNombresJPA(list);
         StringBuilder sb = new StringBuilder("<p>");
         for(String n:nombres){
-            sb.append("<br>").append(n);
+            sb.append("<br><a href='http://localhost:8080/WEB_SEARCH/api/search/leer/").append(n.split(" ")[0]).append("'>").append(n).append("</a>");
         }
         sb.append("</p>");
         return Response.ok(sb.toString()).build();
     }
+
+    @GET
+    @Path("buscarB/{lista}/{R}")
+    //@Produces(MediaType.APPLICATION_JSON)
+    public Response buscarB(@PathParam("lista") String lista,@PathParam("R") int R){
+        String[] palabras=lista.split("[.]");
+        Buscador b = new  Buscador(true);
+        ArrayList<DocumentoRespuesta> docs = b.buscarb(palabras, R);
+
+        StringBuilder sb = new StringBuilder("<p>");
+
+        for(DocumentoRespuesta d: docs){
+            sb.append("<br><a href='http://localhost:8080/WEB_SEARCH/api/search/leer/").append(d.getName()).append("'>").append(d.toString()).append("</a>");
+        }
+        sb.append("</p>");
+        return Response.ok(sb.toString()).build();
+    }
+
     @GET
     @Path("guardar")
     public Response guardar(){
         LectorDocumentos ld = new LectorDocumentos();
         int ans=ld.guardarDocumentoAdd();
         return Response.ok("Se guardaron "+ans+" documentos").build();
-        
     }
+
     @GET
     @Path("leer/{nombre}")
     public Response leer(@PathParam("nombre") String nombre){
-        
-
     File f= new File("./docs/"+nombre);
-    
-
-        
-
     return Response.ok(f).build();
-        
-        
     }
-
 }

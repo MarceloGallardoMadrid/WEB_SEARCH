@@ -61,7 +61,7 @@ public class LectorDocumentos {
                         catch(IOException fex){
                            System.out.println(fex.getMessage());
                         }
-                        rutas.addFirst(f.toString());
+                        rutas.add(f.toString());
                     }
                 }
             }
@@ -107,7 +107,7 @@ public class LectorDocumentos {
             //File d = new File("../../Files");
             Stream.of(d.listFiles((arch,nom)->nom.endsWith(".txt")))
                 .filter(p->p.isFile() && !p.isHidden())
-                .forEach(doc->rutas.addFirst(doc.toString()));
+                .forEach(doc->rutas.addLast(doc.toString()));
             int docs=rutas.size();
             System.out.println("Se deben procesar "+docs+" documentos");
             long t1=System.currentTimeMillis();
